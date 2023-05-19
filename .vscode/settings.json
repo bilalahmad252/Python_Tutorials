@@ -1,0 +1,7 @@
+{
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.preferences": {},
+    "emmet.includeLanguages": {
+        "python": "python"
+    }
+}
