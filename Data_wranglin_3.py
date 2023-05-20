@@ -25,10 +25,13 @@ melted_data['age'].count()
 melted_data['age'].unique()
 melted_data['age'].value_counts()
 
-melted_data['age']=melted_data['age'].map({ '04': '0-4',  '514': '5-14', '014':'0-14', '1524':'15-24', '2534':'25-34', '3544':'35-44', '4554':'45-54', '5564':'55-64', '65':'65+', 'u':'unspecified'})
+melted_data['age']=melted_data['age'].map({ '04': '0-4',  '514': "5-14", '014':'0-14', '1524':'15-24', '2534':'25-34', '3544':'35-44', '4554':'45-54', '5564':'55-64', '65':'65+', 'u':'unspecified'}).astype(str)
+melted_data[melted_data.age=='5-14']
+ 
+
 melted_data.head()
 #Let us sort the data based on year, country and sex
-melted_data=melted_data.sort_values(['country', 'year', 'sex'])
+melted_data=melted_data.sort_values(['country', 'year'])
 melted_data.head()
 #Let us drop the sexage column
 melted_data.drop('sexage', axis=1, inplace=True)
@@ -41,5 +44,8 @@ type(melted_data['sex'])
 melted_data['sex'] = melted_data['sex'].astype(str)
 melted_data.head()
 #Let us move the Cases to end	
-melted_data = melted_data[['country', 'year', 'sex', 'age', 'Cases']]
+melted_data = melted_data[['country', 'year', 'sex', 'age', 'Cases']].astype(str)
 melted_data.head()
+melted_data['Cases'].value_counts()
+#Let us write it to a csv file
+melted_data.to_csv('tidy_data.csv', index=False)
